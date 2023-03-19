@@ -14,7 +14,13 @@ const initdb = async () =>
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (id, content) => {console.error('putDb not implemented')
-
+console.log('PUT to the database');
+const editorDb = await openDB('editor', 1);
+const tx = editorDb.transaction('editor', 'readwrite');
+const store = tx.objectStore('editor');
+const request = store.delete({ id: id, edit: content });
+const result = await request;
+console.log('🚀 - data saved to the database', result);
 
 };
 
