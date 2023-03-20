@@ -21,14 +21,14 @@ console.log('PUT to the database');
 const editorDb = await openDB('editor', 1);
 const tx = editorDb.transaction('editor', 'readwrite');
 const store = tx.objectStore('editor');
-const request = store.delete({ id: id, edit: content });
+const request = store.put({ id: id, value: content });
 const result = await request;
 console.log('🚀 - data saved to the database', result);
 
 };
 
 // TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => {
+export const getAllDb = async () => {
   console.log('GET from the database');
 
   // Create a connection to the database and version we want to use.
